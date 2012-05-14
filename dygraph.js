@@ -235,8 +235,7 @@ Dygraph.DEFAULT_ATTRS = {
   avoidMinZero: false,
   xRangePad: 0,
   yRangePad: null,
-  xAxisAtZero: false,
-  yAxisAtZero: false,
+  drawAxesAtZero: false,
 
   // Sizes of the various chart labels.
   titleHeight: 28,
@@ -2565,7 +2564,7 @@ Dygraph.prototype.computeYAxisRanges_ = function(extremes) {
 
       // Add some padding. This supports two Y padding operation modes:
       //
-      // - backwards compatible (neither yRangePad nor xAxisAtZero set):
+      // - backwards compatible (neither yRangePad nor drawAxesAtZero set):
       //   10% padding for automatic Y ranges, but not for user-supplied
       //   ranges, and move a close-to-zero edge to zero except if
       //   avoidMinZero is set, since drawing at the edge results in
@@ -2574,11 +2573,11 @@ Dygraph.prototype.computeYAxisRanges_ = function(extremes) {
       //   set, add a variable amount of padding at the top but
       //   none at the bottom.
       //
-      // - new-style (yRangePad and/or xAxisAtZero are set by the user):
+      // - new-style (yRangePad and/or drawAxesAtZero are set by the user):
       //   always add Y padding. yRangePad defaults to 10%.
       //
       var ypad = this.attr_('yRangePad');
-      var ypadCompat = (ypad === null && !this.attr_('xAxisAtZero'));
+      var ypadCompat = (ypad === null && !this.attr_('drawAxesAtZero'));
       if (ypad === null) ypad = 0.1;
 
       var maxAxisY, minAxisY;

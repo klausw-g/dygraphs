@@ -160,16 +160,16 @@ RangeTestCase.prototype.testPaddingAuto = function() {
 };
 
 /**
- * Verify auto range with xAxisAtZero.
+ * Verify auto range with drawAxesAtZero.
  */
 RangeTestCase.prototype.testPaddingAutoAxisAtZero = function() {
   var g = this.createGraph({
-      xAxisAtZero: true,
+      drawAxesAtZero: true,
     }, ZERO_TO_FIFTY_STEPS, [10, 20], [-5, 55]);
 };
 
 /**
- * Verify user-specified range with padding and {x,y}AxisAtZero options.
+ * Verify user-specified range with padding and drawAxesAtZero options.
  * Try explicit range matching the auto range, should have identical results.
  */
 RangeTestCase.prototype.testPaddingRange1 = function() {
@@ -177,33 +177,31 @@ RangeTestCase.prototype.testPaddingRange1 = function() {
       valueRange: [0, 50],
       xRangePad: 0.1,
       yRangePad: 0.1,
-      xAxisAtZero: true,
-      yAxisAtZero: true
+      drawAxesAtZero: true
     }, ZERO_TO_FIFTY_STEPS, [9, 21], [-5, 55]);
 };
 
 /**
- * Verify user-specified range with padding and {x,y}AxisAtZero options.
+ * Verify user-specified range with padding and drawAxesAtZero options.
  * User-supplied range differs from the auto range.
  */
 RangeTestCase.prototype.testPaddingRange2 = function() {
   var g = this.createGraph({
       valueRange: [10, 60],
       xRangePad: 0.1,
-      xAxisAtZero: true,
+      drawAxesAtZero: true,
     }, ZERO_TO_FIFTY_STEPS, [9, 21], [5, 65]);
 };
 
 /**
- * Verify yAxisAtZero and includeZero.
+ * Verify drawAxesAtZero and includeZero.
  */
 RangeTestCase.prototype.testPaddingYAtZero = function() {
   var g = this.createGraph({
       includeZero: true,
       xRangePad: 0.1,
       yRangePad: 0.1,
-      xAxisAtZero: true,
-      yAxisAtZero: true
+      drawAxesAtZero: true,
     }, [
       [-10, 10],
       [10, 20],

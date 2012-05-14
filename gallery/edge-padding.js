@@ -20,8 +20,7 @@ Gallery.register(
       var boolOpts = {
         avoidMinZero: '',
         includeZero: '',
-        xAxisAtZero: '',
-        yAxisAtZero: ''};
+        drawAxesAtZero: ''};
 
       var pads = {
         unset: null,

@@ -384,7 +384,7 @@ DygraphCanvasRenderer.prototype._renderAxis = function() {
 
     // draw a vertical line on the left to separate the chart from the labels.
     var axisX;
-    if (this.attr_('yAxisAtZero')) {
+    if (this.attr_('drawAxesAtZero')) {
       var r = this.dygraph_.toPercentXCoord(0);
       if (r > 1 || r < 0) r = 0;
       axisX = halfUp(this.area.x + r * this.area.w);
@@ -445,7 +445,7 @@ DygraphCanvasRenderer.prototype._renderAxis = function() {
 
     context.beginPath();
     var axisY;
-    if (this.attr_('xAxisAtZero')) {
+    if (this.attr_('drawAxesAtZero')) {
       var r = this.dygraph_.toPercentYCoord(0, 0);
       if (r > 1 || r < 0) r = 1;
       axisY = halfDown(this.area.y + r * this.area.h);
