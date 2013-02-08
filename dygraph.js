@@ -659,7 +659,7 @@ Dygraph.prototype.xAxisRange = function() {
  * data set.
  */
 Dygraph.prototype.xAxisExtremes = function() {
-  var pad = this.attr_('xRangePad');
+  var pad = this.attr_('xRangePad') / this.plotter_.area.w;
   if (!this.numRows() > 0) {
     return [0 - pad, 1 + pad];
   }
@@ -2552,7 +2552,7 @@ Dygraph.prototype.computeYAxisRanges_ = function(extremes) {
       }
 
       // Include zero if requested by the user.
-      if (includeZero) {
+      if (includeZero && !logscale) {
         if (minY > 0) minY = 0;
         if (maxY < 0) maxY = 0;
       }
@@ -2575,7 +2575,7 @@ Dygraph.prototype.computeYAxisRanges_ = function(extremes) {
 
       // Add some padding. This supports two Y padding operation modes:
       //
-      // - backwards compatible (neither yRangePad nor drawAxesAtZero set):
+      // - backwards compatible (yRangePad not set):
       //   10% padding for automatic Y ranges, but not for user-supplied
       //   ranges, and move a close-to-zero edge to zero except if
       //   avoidMinZero is set, since drawing at the edge results in
@@ -2584,12 +2584,11 @@ Dygraph.prototype.computeYAxisRanges_ = function(extremes) {
       //   set, add a variable amount of padding at the top but
       //   none at the bottom.
       //
-      // - new-style (yRangePad and/or drawAxesAtZero are set by the user):
-      //   always add Y padding. yRangePad defaults to 10%.
+      // - new-style (yRangePad set by the user):
+      //   always add the specified Y padding.
       //
-      var ypad = this.attr_('yRangePad');
-      var ypadCompat = (ypad === null && !this.attr_('drawAxesAtZero'));
-      if (ypad === null) ypad = 0.1;
+      var ypad = this.attr_('yRangePad') / this.plotter_.area.h;
+      var ypadCompat = (ypad === null);
 
       var maxAxisY, minAxisY;
       if (logscale) {
