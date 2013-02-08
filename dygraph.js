@@ -2588,12 +2588,11 @@ Dygraph.prototype.computeYAxisRanges_ = function(extremes) {
       //   always add the specified Y padding.
       //
       var ypadCompat = true;
-      var ypad = this.attr_('yRangePad');
-      if (ypad === null) {
-        ypad = 0.1;
-      } else {
+      var ypad = 0.1; // add 10%
+      if (this.attr_('yRangePad') !== null) {
         ypadCompat = false;
-        ypad = ypad / this.plotter_.area.h;
+        // Convert pixel padding to ratio
+        ypad = this.attr_('yRangePad') / this.plotter_.area.h;
       }
 
       var maxAxisY, minAxisY;

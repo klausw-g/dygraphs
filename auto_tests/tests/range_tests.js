@@ -52,8 +52,8 @@ RangeTestCase.prototype.createGraph = function(opts, data, expectRangeX, expectR
   var graph = document.getElementById("graph");
   var g = new Dygraph(graph, data, opts);
 
-  assertEqualsDelta(expectRangeX, g.xAxisRange(), 1e-3);
-  assertEqualsDelta(expectRangeY, g.yAxisRange(0), 1e-3);
+  assertEqualsDelta(expectRangeX, g.xAxisRange(), 0.01);
+  assertEqualsDelta(expectRangeY, g.yAxisRange(0), 0.01);
 
   return g;
 };
@@ -290,8 +290,8 @@ RangeTestCase.prototype.testAvoidMinZero = function() {
  */
 RangeTestCase.prototype.testPaddingAuto = function() {
   var g = this.createGraph({
-      xRangePad: 0.1,
-      yRangePad: 0.1
+      xRangePad: 42,
+      yRangePad: 30
     }, ZERO_TO_FIFTY_STEPS, [9, 21], [-5, 55]);
 };
 
@@ -301,7 +301,7 @@ RangeTestCase.prototype.testPaddingAuto = function() {
 RangeTestCase.prototype.testPaddingAutoAxisAtZero = function() {
   var g = this.createGraph({
       drawAxesAtZero: true,
-    }, ZERO_TO_FIFTY_STEPS, [10, 20], [-5, 55]);
+    }, ZERO_TO_FIFTY_STEPS, [10, 20], [0, 55]);
 };
 
 /**
@@ -311,8 +311,8 @@ RangeTestCase.prototype.testPaddingAutoAxisAtZero = function() {
 RangeTestCase.prototype.testPaddingRange1 = function() {
   var g = this.createGraph({
       valueRange: [0, 50],
-      xRangePad: 0.1,
-      yRangePad: 0.1,
+      xRangePad: 42,
+      yRangePad: 30,
       drawAxesAtZero: true
     }, ZERO_TO_FIFTY_STEPS, [9, 21], [-5, 55]);
 };
@@ -324,7 +324,8 @@ RangeTestCase.prototype.testPaddingRange1 = function() {
 RangeTestCase.prototype.testPaddingRange2 = function() {
   var g = this.createGraph({
       valueRange: [10, 60],
-      xRangePad: 0.1,
+      xRangePad: 42,
+      yRangePad: 30,
       drawAxesAtZero: true,
     }, ZERO_TO_FIFTY_STEPS, [9, 21], [5, 65]);
 };
@@ -335,8 +336,8 @@ RangeTestCase.prototype.testPaddingRange2 = function() {
 RangeTestCase.prototype.testPaddingYAtZero = function() {
   var g = this.createGraph({
       includeZero: true,
-      xRangePad: 0.1,
-      yRangePad: 0.1,
+      xRangePad: 42,
+      yRangePad: 30,
       drawAxesAtZero: true,
     }, [
       [-10, 10],
@@ -362,7 +363,7 @@ RangeTestCase.prototype.testLogscaleCompat = function() {
 RangeTestCase.prototype.testLogscalePad = function() {
   var g = this.createGraph({
       logscale: true,
-      yRangePad: 0.1
+      yRangePad: 30
     },
     [[-10, 10], [10, 10], [30, 1000]],
     [-10, 30], [5.01691, 1993.25801]);
