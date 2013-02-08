@@ -122,6 +122,7 @@ Gallery.register(
           var g = new Dygraph(gdiv, data, {
               labels: ['x', 'A', 'B'],
               labelDivWidth: 100,
+              gridLineColor: '#ccc',
               width: 250,
               height: 130
           });

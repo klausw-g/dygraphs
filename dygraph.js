@@ -2587,8 +2587,14 @@ Dygraph.prototype.computeYAxisRanges_ = function(extremes) {
       // - new-style (yRangePad set by the user):
       //   always add the specified Y padding.
       //
-      var ypad = this.attr_('yRangePad') / this.plotter_.area.h;
-      var ypadCompat = (ypad === null);
+      var ypadCompat = true;
+      var ypad = this.attr_('yRangePad');
+      if (ypad === null) {
+        ypad = 0.1;
+      } else {
+        ypadCompat = false;
+        ypad = ypad / this.plotter_.area.h;
+      }
 
       var maxAxisY, minAxisY;
       if (logscale) {
